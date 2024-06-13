@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 13-06-2024 a las 04:49:25
+-- Tiempo de generación: 13-06-2024 a las 05:40:34
 -- Versión del servidor: 5.7.36
 -- Versión de PHP: 7.4.26
 
@@ -42,7 +42,8 @@ CREATE TABLE IF NOT EXISTS `asistenacia` (
 INSERT INTO `asistenacia` (`Id_Beneficiario`, `Asistencia`, `Asistenciapormes`) VALUES
 (40, 0, 8),
 (41, 0, 12),
-(42, 0, 8);
+(42, 0, 8),
+(43, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -53,7 +54,7 @@ INSERT INTO `asistenacia` (`Id_Beneficiario`, `Asistencia`, `Asistenciapormes`) 
 DROP TABLE IF EXISTS `beneficiario`;
 CREATE TABLE IF NOT EXISTS `beneficiario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Foto` varchar(50) NOT NULL,
+  `Foto` varchar(255) NOT NULL,
   `Nombre` varchar(255) NOT NULL,
   `Apellidos` varchar(255) NOT NULL,
   `Curp` varchar(18) NOT NULL,
@@ -63,20 +64,20 @@ CREATE TABLE IF NOT EXISTS `beneficiario` (
   `Telefono` bigint(10) NOT NULL,
   `CorreoElectronico` varchar(60) NOT NULL,
   `Contrasena` varchar(15) NOT NULL,
-  `Dias` int(2) NOT NULL,
   `TipoUsuario` int(2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `TipoUsuario` (`TipoUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `beneficiario`
 --
 
-INSERT INTO `beneficiario` (`id`, `Foto`, `Nombre`, `Apellidos`, `Curp`, `Edad`, `NumPersonasDependen`, `Direccion`, `Telefono`, `CorreoElectronico`, `Contrasena`, `Dias`, `TipoUsuario`) VALUES
-(40, 'img/perfil1.jpg', 'Juan', 'Pérez García', 'PEGJ980520HDFRRR05', 23, 2, 'Calle Juárez #123, Col. Centro, Ciudad de México', 5559876543, 'juan.perez@example.com', 'juanito123', 3, 1),
-(41, 'img/perfil2.jpg', 'María', 'García López', 'GALM950320MDFRRR08', 26, 3, 'Av. Revolución #456, Col. Del Valle, Ciudad de México', 5551234567, 'maria.garcia@example.com', 'maria123', 4, 1),
-(42, 'img/perfil3.jpg', 'Juan', 'Pérez García', 'PEGJ880510HDFRNN04', 33, 2, 'Calle Morelos #123, Col. Centro, Ciudad de México', 5543219876, 'juan.perez@example.com', 'juan123', 3, 1);
+INSERT INTO `beneficiario` (`id`, `Foto`, `Nombre`, `Apellidos`, `Curp`, `Edad`, `NumPersonasDependen`, `Direccion`, `Telefono`, `CorreoElectronico`, `Contrasena`, `TipoUsuario`) VALUES
+(40, 'img/perfil1.jpg', 'Juan', 'Pérez García', 'PEGJ980520HDFRRR05', 23, 2, 'Calle Juárez #123, Col. Centro, Ciudad de México', 5559876543, 'juan.perez@example.com', 'juanito123', 1),
+(41, 'img/perfil2.jpg', 'María', 'García López', 'GALM950320MDFRRR08', 26, 3, 'Av. Revolución #456, Col. Del Valle, Ciudad de México', 5551234567, 'maria.garcia@example.com', 'maria123', 1),
+(42, 'img/perfil3.jpg', 'Juan', 'Pérez García', 'PEGJ880510HDFRNN04', 33, 2, 'Calle Morelos #123, Col. Centro, Ciudad de México', 5543219876, 'juan.perez@example.com', 'juan123', 1),
+(43, 'img/admin.jpg', 'Admin', 'Licons', 'LIAD000101MDFRRR01', 30, 0, 'Av. Principal #456, Col. Centro, Ciudad de México', 5551112222, 'admin@liconsa.com', 'admin123', 2);
 
 --
 -- Disparadores `beneficiario`
@@ -204,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `tarjeta` (
   `Status` varchar(25) NOT NULL,
   PRIMARY KEY (`idTarjeta`),
   KEY `idBeneficiario` (`idBeneficiario`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tarjeta`

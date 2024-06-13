@@ -1,9 +1,8 @@
 <?php
-
 // Conexión a la base de datos
 $host = "localhost";
 $usuario = "root";
-$contrasena = "";
+$contrasena = "";  // Deja vacío si no hay contraseña
 $base_de_datos = "liconsa";
 
 $conexion = mysqli_connect($host, $usuario, $contrasena, $base_de_datos);
@@ -14,35 +13,34 @@ if (!$conexion) {
   exit();
 }
 
-// Obtener los datos del formulario
-$id = $_POST['id'];
-$foto = $_FILES['foto']['tmp_name'];
-$nombre = $_POST['nombre'];
-$apellidos = $_POST['apellidos'];
-$curp = $_POST['curp'];
-$edad = $_POST['edad'];
-$personas_dependientes = $_POST['personas_dependientes'];
-$direccion = $_POST['direccion'];
-$telefono = $_POST['telefono'];
-$correo_electronico = $_POST['correo_electronico'];
-$contrasena = $_POST['contrasena'];
-$tipo_usuario = $_POST['tipo_usuario'];
+// Obtener los datos del formulario de manera segura
+$nombre = mysqli_real_escape_string($conexion, $_POST['nombre']);
+$apellidos = mysqli_real_escape_string($conexion, $_POST['apellidos']);
+$curp = mysqli_real_escape_string($conexion, $_POST['curp']);
+$edad = mysqli_real_escape_string($conexion, $_POST['edad']);
+$personas_dependientes = mysqli_real_escape_string($conexion, $_POST['personas_dependientes']);
+$direccion = mysqli_real_escape_string($conexion, $_POST['direccion']);
+$telefono = mysqli_real_escape_string($conexion, $_POST['telefono']);
+$correo_electronico = mysqli_real_escape_string($conexion, $_POST['correo_electronico']);
+$contrasena = mysqli_real_escape_string($conexion, $_POST['contrasena']);
+$tipo_usuario = mysqli_real_escape_string($conexion, $_POST['tipo_usuario']);
 
-// Guardar la foto en el servidor
-if ($foto != "") {
-  $ruta_foto = "img/" . uniqid() . ".jpg";
-  move_uploaded_file($foto, $ruta_foto);
+// Subida de la imagen (opcional)
+if ($_FILES['foto']['error'] === UPLOAD_ERR_OK) {
+  $foto_tmp_name = $_FILES['foto']['tmp_name'];
+  $foto_name = basename($_FILES['foto']['name']);
+  $ruta_foto = "img/" . uniqid('', true) . "_" . $foto_name;
+  if (!move_uploaded_file($foto_tmp_name, $ruta_foto)) {
+    echo '<script>alert("Error al subir la foto.");</script>';
+    exit();
+  }
 } else {
-  $ruta_foto = "";
+  $ruta_foto = ""; // Puedes asignar una imagen por defecto si no se sube ninguna
 }
 
 // Consulta SQL para insertar los datos
-$sql = "INSERT INTO beneficiario ( Foto, Nombre, Apellidos, Curp, Edad, 
-NumPersonasDependen, Direccion, Telefono, CorreoElectronico, Contrasena, 
-TipoUsuario) 
-VALUES ( '$ruta_foto', '$nombre', '$apellidos', '$curp', '$edad', 
-'$personas_dependientes', '$direccion', '$telefono', '$correo_electronico', 
-'$contrasena', '$tipo_usuario')";
+$sql = "INSERT INTO beneficiario (Foto, Nombre, Apellidos, Curp, Edad, NumPersonasDependen, Direccion, Telefono, CorreoElectronico, Contrasena, TipoUsuario) 
+        VALUES ('$ruta_foto', '$nombre', '$apellidos', '$curp', $edad, $personas_dependientes, '$direccion', $telefono, '$correo_electronico', '$contrasena', $tipo_usuario)";
 
 // Ejecutar la consulta
 if (mysqli_query($conexion, $sql)) {
@@ -50,9 +48,9 @@ if (mysqli_query($conexion, $sql)) {
 } else {
   echo '<script>alert("Error al insertar los datos: ' . mysqli_error($conexion) . '");</script>';
 }
+
 echo '<script>window.history.back();</script>';
 
 // Cerrar la conexión a la base de datos
 mysqli_close($conexion);
-
 ?>
