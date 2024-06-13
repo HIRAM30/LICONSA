@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Ejemplo</title>
+    <title>LICONSA</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Altura mínima de la pantalla visible */
         }
         .navbar {
             display: flex;
@@ -21,16 +24,20 @@
         .navbar img {
             height: 50px;
         }
-        .navbar .button {
+        .navbar .buttons {
             display: flex;
             gap: 10px;
         }
-        .navbar .button {
+        .navbar .buttons a {
             background-color: #555;
             color: white;
-            border: none;
+            text-decoration: none;
             padding: 10px 20px;
-            cursor: pointer;
+            border-radius: 5px; /* Borde redondeado */
+            transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+        }
+        .navbar .buttons a:hover {
+            background-color: #777; /* Cambio de color al pasar el ratón */
         }
         .info-box {
             padding: 20px;
@@ -38,19 +45,55 @@
             text-align: center;
         }
         .sections {
-            display: flex;
-            justify-content: space-around;
             padding: 20px;
+            flex: 1; /* El contenido ocupa el espacio restante */
         }
         .section {
-            width: 30%;
+            display: flex;
             background-color: #e4e4e4;
-            padding: 10px;
-            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
         }
         .section img {
-            width: 100%;
+            width: 50%; /* Ajusta el tamaño de la imagen según sea necesario */
             height: auto;
+            margin-right: 20px; /* Espacio entre la imagen y el texto */
+        }
+        .section .content {
+            flex: 1; /* El texto ocupa todo el espacio restante */
+        }
+        .section h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .section ul {
+            padding-left: 20px; /* Indentación del texto a la izquierda */
+            list-style-type: disc; /* Puntos como viñetas */
+        }
+        .section ul li {
+            margin-bottom: 10px;
+        }
+        /* Estilo específico para el segundo y cuarto cuadro */
+        .section:nth-child(2),
+        .section:nth-child(4) {
+            flex-direction: row-reverse; /* Cambia la dirección del flexbox */
+        }
+        .section:nth-child(2) img,
+        .section:nth-child(4) img {
+            margin-right: 0;
+            margin-left: 20px; /* Espacio entre la imagen y el texto */
+        }
+        .section:nth-child(2) .content,
+        .section:nth-child(4) .content {
+            text-align: left; /* Alinea el texto a la izquierda */
+        }
+        /* Estilos para el footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
         }
     </style>
 </head>
@@ -58,29 +101,70 @@
     <div class="navbar">
         <img src="img/gobierno_mexico.png" alt="Logo">
         <div class="buttons">
-            <a href="LICONSA/login.php" class="button">Iniciar Sesión</a>
+            <a href="LICONSA/login.php">Iniciar Sesión</a>
         </div>
     </div>
     <div class="info-box">
-        <h1>Cuadro de Información</h1>
+        <img src="img/liconsa_logo.png" alt="Logo">
         <p>LICONSA (Leche Industrializada Conasupo, S.A. de C.V.) es una empresa mexicana de propiedad estatal que desempeña un papel importante en los programas de bienestar social y nutrición del país. Nuestra principal función es la producción y distribución de leche fortificada y productos lácteos para mejorar la nutrición de las poblaciones más vulnerables, especialmente niños, mujeres embarazadas y personas mayores.</p>
     </div>
     <div class="sections">
         <div class="section">
-            <h2>Sección 1</h2>
-            <img src="imagen1.jpg" alt="Imagen 1">
-            <p>Descripción de la primera sección.</p>
+            <img src="img/objetivos.jpg" alt="Imagen 1">
+            <div class="content">
+                <h1>Objetivos Clave</h1>
+                <br>
+                <ul>
+                    <li>Apoyo Nutricional: LICONSA tiene como objetivo principal proporcionar leche de alta calidad a precios accesibles a familias de bajos ingresos, asegurando mejores resultados en salud y nutrición.</li><br>
+                    <li>Bienestar Social: El programa forma parte de esfuerzos más amplios de bienestar social destinados a reducir la desnutrición y apoyar el desarrollo de los niños en comunidades marginadas.</li><br>
+                    <li>Impacto Económico: Al comprar leche a productores locales, LICONSA apoya a la industria láctea nacional y contribuye al desarrollo rural y la estabilidad económica.</li>
+                </ul>
+            </div>
         </div>
         <div class="section">
-            <h2>Sección 2</h2>
-            <img src="imagen2.jpg" alt="Imagen 2">
-            <p>Descripción de la segunda sección.</p>
+            <img src="img/programa.jpg" alt="Imagen 2">
+            <div class="content">
+                <h1>Programas e Iniciativas</h1>
+                <br>
+                <ul>
+                    <li>Distribución de Leche: LICONSA distribuye leche fortificada a través de una red de tiendas y centros comunitarios en todo México.</li><br>
+                    <li>Fortificación: La leche proporcionada por LICONSA está enriquecida con vitaminas y minerales esenciales para abordar deficiencias comunes en las dietas de las poblaciones objetivo.</li><br>
+                    <li>Subsidios: El gobierno subsidia el costo de la leche, haciendo que sea más accesible para las familias de bajos ingresos.</li>
+                </ul>
+            </div>
         </div>
         <div class="section">
-            <h2>Sección 3</h2>
-            <img src="imagen3.jpg" alt="Imagen 3">
-            <p>Descripción de la tercera sección.</p>
+            <img src="img/incorporarse.jpg" alt="Imagen 3">
+            <div class="content">
+                <h1>¿Quiénes pueden incorporarse al Programa de Abasto de Leche de Liconsa?</h1>
+                <p>Pueden incorporarse al Padrón de Beneficiarios del Programa de Abasto Social de leche todos los hogares con:</p>
+                <ul>
+                    <li>Niñas y/o niños de 6 meses a 12 años de edad</li>
+                    <li>Mujeres de 13 a 15 años</li>
+                    <li>Mujeres en periodo de gestación o lactancia</li>
+                    <li>Mujeres de 45 a 59 años</li>
+                    <li>Personas con enfermedades crónicas</li>
+                    <li>Personas con discapacidad </li>
+                    <li>Personas adultas mayores de 60 años</li>
+                </ul>
+            </div>
         </div>
+        <div class="section">
+            <img src="img/necesita.jpg" alt="Imagen 4">
+            <div class="content">
+                <h1>¿Qué se necesita para incorporarse?</h1>
+                <br>
+                <ul>
+                    <li>Verificar en el punto de venta o lechería de Liconsa que se encuentre más cercano a su domicilio, día y horario de atención</li><br>
+                    <li>Acudir a la lechería el día y en el horario en el cual asiste el personal de Promotoría Social encargado, con la documentación correspondiente (identificación, comprobante de domicilio, acta de nacimiento, CURP, etc.)</li><br>
+                    <li>El trámite no tiene costo alguno, ni está condicionado a ningún partido político o social</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>© 2024 LICONSA. Todos los derechos reservados.</p>
     </div>
 </body>
 </html>
+
