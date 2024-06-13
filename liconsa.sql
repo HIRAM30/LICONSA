@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 13-06-2024 a las 04:26:24
+-- Tiempo de generación: 13-06-2024 a las 04:49:25
 -- Versión del servidor: 5.7.36
 -- Versión de PHP: 7.4.26
 
@@ -35,6 +35,15 @@ CREATE TABLE IF NOT EXISTS `asistenacia` (
   KEY `Id_tarjeta` (`Id_Beneficiario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `asistenacia`
+--
+
+INSERT INTO `asistenacia` (`Id_Beneficiario`, `Asistencia`, `Asistenciapormes`) VALUES
+(40, 0, 8),
+(41, 0, 12),
+(42, 0, 8);
+
 -- --------------------------------------------------------
 
 --
@@ -58,7 +67,16 @@ CREATE TABLE IF NOT EXISTS `beneficiario` (
   `TipoUsuario` int(2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `TipoUsuario` (`TipoUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `beneficiario`
+--
+
+INSERT INTO `beneficiario` (`id`, `Foto`, `Nombre`, `Apellidos`, `Curp`, `Edad`, `NumPersonasDependen`, `Direccion`, `Telefono`, `CorreoElectronico`, `Contrasena`, `Dias`, `TipoUsuario`) VALUES
+(40, 'img/perfil1.jpg', 'Juan', 'Pérez García', 'PEGJ980520HDFRRR05', 23, 2, 'Calle Juárez #123, Col. Centro, Ciudad de México', 5559876543, 'juan.perez@example.com', 'juanito123', 3, 1),
+(41, 'img/perfil2.jpg', 'María', 'García López', 'GALM950320MDFRRR08', 26, 3, 'Av. Revolución #456, Col. Del Valle, Ciudad de México', 5551234567, 'maria.garcia@example.com', 'maria123', 4, 1),
+(42, 'img/perfil3.jpg', 'Juan', 'Pérez García', 'PEGJ880510HDFRNN04', 33, 2, 'Calle Morelos #123, Col. Centro, Ciudad de México', 5543219876, 'juan.perez@example.com', 'juan123', 3, 1);
 
 --
 -- Disparadores `beneficiario`
@@ -171,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `dependientes` (
   `Curp` varchar(18) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idBeneficiario` (`idBeneficiario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -186,7 +204,16 @@ CREATE TABLE IF NOT EXISTS `tarjeta` (
   `Status` varchar(25) NOT NULL,
   PRIMARY KEY (`idTarjeta`),
   KEY `idBeneficiario` (`idBeneficiario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `tarjeta`
+--
+
+INSERT INTO `tarjeta` (`idTarjeta`, `idBeneficiario`, `Status`) VALUES
+(40, 40, 'Activo'),
+(41, 41, 'Activo'),
+(42, 42, 'Activo');
 
 -- --------------------------------------------------------
 
