@@ -1,63 +1,98 @@
-<?php
-session_start();
-
-// Verificar si se enviaron datos por POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener credenciales del formulario
-    $usuario = $_POST['usuario'];
-    $contraseña = $_POST['contraseña']; // Esta ya está hasheada con MD5 en el cliente
-
-    // Conectar a la base de datos
-    $conexion = mysqli_connect("localhost", "root", "", "liconsa");
-
-    // Verificar la conexión
-    if ($conexion === false) {
-        die("Error de conexión: " . mysqli_connect_error());
-    }
-
-    // Consulta preparada para evitar inyección SQL
-    $consulta = "SELECT TipoUsuario FROM beneficiario WHERE CorreoElectronico=? AND Contrasena=?";
-    $stmt = mysqli_prepare($conexion, $consulta);
-    mysqli_stmt_bind_param($stmt, "ss", $usuario, $contraseña);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_store_result($stmt);
-
-    // Verificar si se encontraron filas
-    if (mysqli_stmt_num_rows($stmt) == 1) {
-        mysqli_stmt_bind_result($stmt, $tipoUsuario);
-        mysqli_stmt_fetch($stmt);
-
-        // Establecer variables de sesión
-        $_SESSION['usuario'] = $usuario;
-        $_SESSION['tipoUsuario'] = $tipoUsuario;
-
-        // Redireccionar según el tipo de usuario
-        switch ($tipoUsuario) {
-            case 1: // Administrador
-                header("Location: BENEFICIARIO.php");
-                break;
-            case 2: // Cliente
-                header("Location: ADMIN.php");
-                break;
-            case 3: // Jefe de turno
-                header("Location: JEFEDETURNO.php");
-                break;
-            default:
-                // Tipo de usuario no válido
-                header("Location: index.html?error=invalid_user_type");
-                break;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://iconape.com/wp-content/files/km/254233/png/254233.png"/>
+    <title>Inicio de Sesión</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="fontawesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
         }
-    } else {
-        // No se encontraron coincidencias, redirigir a página de inicio de sesión con error
-        header("Location: login.php?error=authentication_failed");
-    }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding-top: 50px;
+        }
+        form {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #946D43;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #946D43;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #946D43;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <!-- Incluye la biblioteca crypto-js para hashing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script>
+        function hashPassword(event) {
+            event.preventDefault(); // Prevenir el envío del formulario
 
-    // Liberar recursos
-    mysqli_stmt_close($stmt);
-    mysqli_close($conexion);
-} else {
-    // Si no se envió por POST, redirigir a la página de inicio
-    header("Location: login.php");
-}
-?>
+            // Obtener los valores del formulario
+            const form = event.target;
+            const passwordField = form.elements['contraseña'];
+            const password = passwordField.value;
+
+            // Hashear la contraseña usando MD5
+            const hashedPassword = CryptoJS.MD5(password).toString();
+
+            // Establecer el valor de la contraseña hasheada en el campo de contraseña
+            passwordField.value = hashedPassword;
+
+            // Enviar el formulario
+            form.submit();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Bienvenido a Liconsa</h1>
+        </header>
+        <form action="iniciodesesion.php" method="post" onsubmit="hashPassword(event)">
+            <h2>Iniciar Sesión</h2>
+            <p>
+                <label for="usuario">Correo:</label>
+                <input type="text" id="usuario" placeholder="Ingrese su correo" name="usuario" required>
+            </p>
+            <p>
+                <label for="contraseña">Contraseña:</label>
+                <input type="password" id="contraseña" placeholder="Ingrese su contraseña" name="contraseña" required>
+            </p>
+            <input class="btn-submit" type="submit" value="Ingresar">
+        </form>
+    </div>
+</body>
+</html>
+
 

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300">
     <style>
         body {
+            
             font-family: 'Open Sans', sans-serif;
             margin: 0;
             padding: 0;
@@ -21,11 +22,13 @@
             padding-top: 50px;
         }
         form {
+            
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         h1 {
+          
             text-align: center;
             color: #946D43;
         }
@@ -41,56 +44,38 @@
             border-radius: 5px;
             border: 1px solid #ccc;
             box-sizing: border-box;
+          
         }
         .btn-submit {
             width: 100%;
             padding: 10px;
+           
             border: none;
-            background-color: #946D43;
-            color: white;
+           background-color: #946D43;
             border-radius: 5px;
             cursor: pointer;
         }
+       
     </style>
-    <!-- Incluye la biblioteca crypto-js para hashing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-    <script>
-        function hashPassword(event) {
-            event.preventDefault(); // Prevenir el envío del formulario
-
-            // Obtener los valores del formulario
-            const form = event.target;
-            const passwordField = form.elements['contraseña'];
-            const password = passwordField.value;
-
-            // Hashear la contraseña usando MD5
-            const hashedPassword = CryptoJS.MD5(password).toString();
-
-            // Establecer el valor de la contraseña hasheada en el campo de contraseña
-            passwordField.value = hashedPassword;
-
-            // Enviar el formulario
-            form.submit();
-        }
-    </script>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Bienvenido a Liconsa</h1>
         </header>
-        <form action="iniciodesesion.php" method="post" onsubmit="hashPassword(event)">
+        <form action="iniciodesesion.php" method="post">
             <h2>Iniciar Sesión</h2>
             <p>
                 <label for="usuario">Correo:</label>
-                <input type="text" id="usuario" placeholder="Ingrese su correo" name="usuario" required>
+                <input type="text" id="usuario" placeholder="Ingrese su correo" name="usuario">
             </p>
             <p>
                 <label for="contraseña">Contraseña:</label>
-                <input type="password" id="contraseña" placeholder="Ingrese su contraseña" name="contraseña" required>
+                <input type="password" id="contraseña" placeholder="Ingrese su contraseña" name="contraseña">
             </p>
             <input class="btn-submit" type="submit" value="Ingresar">
         </form>
+        
     </div>
 </body>
 </html>
