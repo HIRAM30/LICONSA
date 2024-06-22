@@ -5,7 +5,7 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener credenciales del formulario
     $usuario = $_POST['usuario'];
-    $contraseña = $_POST['contraseña'];
+    $contraseña = $_POST['contraseña']; // Esta ya está hasheada con MD5
 
     // Conectar a la base de datos
     $conexion = mysqli_connect("localhost", "root", "", "liconsa");
