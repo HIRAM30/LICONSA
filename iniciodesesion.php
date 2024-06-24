@@ -1,16 +1,24 @@
 <?php
 session_start();
 
-// Verificar si se enviaron datos por POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Obtener credenciales del formulario
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usuario = $_POST['usuario'];
-    $contraseña = $_POST['contraseña']; // Esta ya está hasheada con MD5
+    $contraseña = $_POST['contraseña'];
+    $recaptcha_response = $_POST['g-recaptcha-response'];
+
+    // Validar el reCAPTCHA
+    $secret = '6Le5fgAqAAAAACrkUV499SejFuEIkHnKd6qrrMPh';
+    $response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secret&response=$recaptcha_response");
+    $responseKeys = json_decode($response, true);
+
+    if (intval($responseKeys["success"]) !== 1) {
+        header("Location: login.php?error=captcha_failed");
+        exit;
+    }
 
     // Conectar a la base de datos
     $conexion = mysqli_connect("localhost", "root", "", "liconsa");
 
-    // Verificar la conexión
     if ($conexion === false) {
         die("Error de conexión: " . mysqli_connect_error());
     }
@@ -22,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_stmt_execute($stmt);
     mysqli_stmt_store_result($stmt);
 
-    // Verificar si se encontraron filas
     if (mysqli_stmt_num_rows($stmt) == 1) {
         mysqli_stmt_bind_result($stmt, $tipoUsuario);
         mysqli_stmt_fetch($stmt);
@@ -43,23 +50,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: JEFEDETURNO.php");
                 break;
             default:
-                // Tipo de usuario no válido
                 header("Location: index.html?error=invalid_user_type");
                 break;
         }
     } else {
-        // No se encontraron coincidencias, redirigir a página de inicio de sesión con error
         header("Location: login.php?error=authentication_failed");
     }
 
-    // Liberar recursos
     mysqli_stmt_close($stmt);
     mysqli_close($conexion);
 } else {
-    // Si no se envió por POST, redirigir a la página de inicio
     header("Location: login.php");
 }
 ?>
-
-
-
