@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 13-06-2024 a las 05:40:34
+-- Tiempo de generación: 24-06-2024 a las 16:23:30
 -- Versión del servidor: 5.7.36
 -- Versión de PHP: 7.4.26
 
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `beneficiario` (
   `TipoUsuario` int(2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `TipoUsuario` (`TipoUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `beneficiario`
@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `dependientes` (
   `Curp` varchar(18) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idBeneficiario` (`idBeneficiario`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -205,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `tarjeta` (
   `Status` varchar(25) NOT NULL,
   PRIMARY KEY (`idTarjeta`),
   KEY `idBeneficiario` (`idBeneficiario`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `tarjeta`
