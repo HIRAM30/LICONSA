@@ -154,6 +154,65 @@
                                             <label for="idBeneficiario">ID del Beneficiario:</label>
                                             <select class="selector" name="idBeneficiario" id="idBeneficiario" required>
                                                 <?php
+                                                // backup.php
+                                                function backupDatabase($host, $username, $password, $database, $backupDir)
+                                                {
+                                                    $date = date('Y-m-d_H-i-s');
+                                                    $backupFile = $backupDir . $database . '_' . $date . '.sql';
+                                                    $command = "mysqldump --host=$host --user=$username --password=$password $database > $backupFile";
+                                                
+                                                    system($command, $output);
+                                                
+                                                    if ($output === 0) {
+                                                        echo "Backup created successfully: $backupFile";
+                                                    } else {
+                                                        echo "Error creating backup: $output";
+                                                    }
+                                                }
+                                                
+                                                // Usage
+                                                backupDatabase('localhost', 'root', '', 'liconsa', '/path/to/backup/directory/');
+                                                
+// recover.php
+function isDatabaseOnline($host, $username, $password, $database)
+{
+    try {
+        $db = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+        return true;
+    } catch (PDOException $e) {
+        return false;
+    }
+}
+
+function recoverDatabase($backupDir, $host, $username, $password, $database)
+{
+    $latestBackupFile = getLatestBackupFile($backupDir);
+    $command = "mysql --host=$host --user=$username --password=$password $database < $latestBackupFile";
+
+    system($command, $output);
+
+    if ($output === 0) {
+        echo "Database recovered successfully from: $latestBackupFile";
+    } else {
+        echo "Error recovering database: $output";
+    }
+}
+
+function getLatestBackupFile($backupDir)
+{
+    $files = glob($backupDir . '*.sql');
+    usort($files, function($a, $b) {
+        return filemtime($b) - filemtime($a);
+    });
+
+    return $files[0];
+}
+
+// Usage
+if (!isDatabaseOnline('localhost', 'root', '', 'liconsa')) {
+    recoverDatabase('/path/to/backup/directory/', 'localhost', 'root', '', 'liconsa');
+}
+    
                                                 // Conexión a la base de datos
                                                 $db = new PDO('mysql:host=localhost;dbname=liconsa', 'root', '');
 
