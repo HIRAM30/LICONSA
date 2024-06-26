@@ -154,26 +154,46 @@
                                             <label for="idBeneficiario">ID del Beneficiario:</label>
                                             <select class="selector" name="idBeneficiario" id="idBeneficiario" required>
                                                 <?php
-                                                // backup.php
-                                                function backupDatabase($host, $username, $password, $database, $backupDir)
-                                                {
-                                                    $date = date('Y-m-d_H-i-s');
-                                                    $backupFile = $backupDir . $database . '_' . $date . '.sql';
-                                                    $command = "mysqldump --host=$host --user=$username --password=$password $database > $backupFile";
-                                                
-                                                    system($command, $output);
-                                                
-                                                    if ($output === 0) {
-                                                        echo "Backup created successfully: $backupFile";
-                                                    } else {
-                                                        echo "Error creating backup: $output";
-                                                    }
+                                                // Conexión a la base de datos
+                                                $db = new PDO('mysql:host=localhost;dbname=liconsa', 'root', '');
+
+                                                // Consulta para obtener los tipos de usuario
+                                                $sql = "SELECT id FROM beneficiario ORDER BY id DESC";
+
+                                                // Preparación de la consulta
+                                                $stmt = $db->prepare($sql);
+
+                                                // Ejecución de la consulta
+                                                $stmt->execute();
+
+                                                // Recorrido de los tipos de usuario
+                                                while ($tipo_usuario = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                                    echo "<option value=\"{$tipo_usuario['id']}\">{$tipo_usuario['id']}</option>";
                                                 }
-                                                
-                                                // Usage
-                                                backupDatabase('localhost', 'root', '', 'liconsa', '/path/to/backup/directory/');
-                                                
-// recover.php
+                                                ?>
+                                                <?php
+//Copias de Seguridad Automáticas
+function backupDatabase($host, $username, $password, $database, $backupDir)
+{
+    $date = date('Y-m-d_H-i-s');
+    $backupFile = $backupDir . $database . '_' . $date . '.sql';
+    $command = "mysqldump --host=$host --user=$username --password=$password $database > $backupFile";
+
+    system($command, $output);
+
+    if ($output === 0) {
+        echo "Backup created successfully: $backupFile";
+    } else {
+        echo "Error creating backup: $output";
+    }
+}
+
+// Usage
+backupDatabase('localhost', 'root', '', 'liconsa', '/path/to/backup/directory/');
+?>
+
+<?php
+// Detección de Fallos y Recuperación Automática
 function isDatabaseOnline($host, $username, $password, $database)
 {
     try {
@@ -212,24 +232,8 @@ function getLatestBackupFile($backupDir)
 if (!isDatabaseOnline('localhost', 'root', '', 'liconsa')) {
     recoverDatabase('/path/to/backup/directory/', 'localhost', 'root', '', 'liconsa');
 }
-    
-                                                // Conexión a la base de datos
-                                                $db = new PDO('mysql:host=localhost;dbname=liconsa', 'root', '');
+?>
 
-                                                // Consulta para obtener los tipos de usuario
-                                                $sql = "SELECT id FROM beneficiario ORDER BY id DESC";
-
-                                                // Preparación de la consulta
-                                                $stmt = $db->prepare($sql);
-
-                                                // Ejecución de la consulta
-                                                $stmt->execute();
-
-                                                // Recorrido de los tipos de usuario
-                                                while ($tipo_usuario = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                                                    echo "<option value=\"{$tipo_usuario['id']}\">{$tipo_usuario['id']}</option>";
-                                                }
-                                                ?>
                                             </select><br>
                                         `;
 
