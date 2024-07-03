@@ -32,7 +32,6 @@
                         </button>   
                         <div class="overlay" id="overlay1">
                             <div class="popup">
-                                <span class="close-btn" onclick="cerrarcaja1()">CERRAR</span>
                                 <!-- Aquí puedes agregar el contenido de la caja -->  
                                 <?php if (!empty($mensaje)) : ?>
                                   <p><?php echo $mensaje; ?></p>
@@ -75,8 +74,9 @@
                                     }
                                     ?>
                                   </select><br>                                  
-
+                                  <button class="btn btn-primary tm-btn-submit close-btn" onclick="cerrarcaja1()">Cerrar</button>
                                   <button class="btn btn-primary tm-btn-submit" type="submit">Agregar</button>
+
                                 </form>                                                                                                                                   
                                 <!-- Aquí termina el contenido de la caja -->
                             </div>
@@ -91,11 +91,12 @@
                         </button>                                        
                         <div class="overlay" id="overlay2">
                             <div class="popup">
-                                <span class="close-btn" onclick="cerrarcaja2()">CERRAR</span>
+
                                 <!-- Aquí puedes agregar el contenido de la caja -->
                                 <h2 class="tm-page-title">Eliminar</h2><br>                                
                                 <input class="loginin" type="text" name="CURP" placeholder="CURP" required>
-                                <button class="btn btn-primary tm-btn-submit" type="submit" title="Buscar" name="Buscar">Buscar</button>                                
+                                <button class="btn2 btn-primary tm-btn-submit close-btn" onclick="cerrarcaja2()">Cerrar</span>
+                                <button class="btn2 btn-primary tm-btn-submit" type="submit" title="Buscar" name="Buscar">Buscar</button>                                
                                 <!-- Aquí termina el contenido de la caja -->
                             </div>
                         </div>
@@ -112,11 +113,12 @@
                         </button>                                           
                         <div class="overlay" id="overlay3">
                             <div class="popup">
-                                <span class="close-btn" onclick="cerrarcaja3()">CERRAR</span>
+
                                 <!-- Aquí puedes agregar el contenido de la caja --> 
                                 <h2 class="tm-page-title">Editar</h2><br>                                
                                 <input class="loginin" type="text" name="CURP" placeholder="CURP" required>
-                                <button class="btn btn-primary tm-btn-submit" type="submit" title="Buscar" name="Buscar">Buscar</button>
+                                <button class="btn2 btn-primary tm-btn-submit close-btn" onclick="cerrarcaja3()">Cerrar</span>                               
+                                <button class="btn2 btn-primary tm-btn-submit" type="submit" title="Buscar" name="Buscar">Buscar</button>
                                
                                 <!-- Aquí termina el contenido de la caja -->
                             </div>
@@ -143,11 +145,12 @@
                         </button>                                        
                         <div class="overlay" id="overlay5">
                             <div class="popup">
-                                <span class="close-btn" onclick="cerrarcaja5()">CERRAR</span>
+
                                 <!-- Aquí puedes agregar el contenido de la caja --> 
                                 <h2 class="tm-page-title">Consultar</h2><br>
                                 <input class="loginin" type="text" name="CURP" placeholder="CURP" required>
-                                <button class="btn btn-primary tm-btn-submit" type="submit" title="Buscar" name="Buscar">Buscar</button>
+                                <button class="btn2 btn-primary tm-btn-submit close-btn" onclick="cerrarcaja5()">Cerrar</span>                                
+                                <button class="btn2 btn-primary tm-btn-submit" type="submit" title="Buscar" name="Buscar">Buscar</button>
                                 <div id="resultadoConsulta"></div>
 
                                 <!-- Aquí termina el contenido de la caja -->
@@ -163,7 +166,6 @@
                         </button>                                        
                         <div class="overlay" id="overlay6">
                             <div class="popup">
-                                <span class="close-btn" onclick="cerrarcaja6()">CERRAR</span>
                                 <!-- Aquí puedes agregar el contenido de la caja -->                                         
                                 <h2 class="tm-page-title">Agregar</h2><br>  
                                 <script>
@@ -223,11 +225,10 @@
                                         `;
                                     }
                                 </script>
-
                                 <label for="num_dependientes">Número de Dependientes:</label>
                                 <input type="number" id="num_dependientes" name="num_dependientes" min="1" onchange="mostrarCamposDependientes()" required>
                                 <br><br>
-
+                                <button class="btn2 btn-primary tm-btn-submit close-btn" onclick="cerrarcaja6()">Cerrar</span>                              
                                 <form id="formulario_dependientes" action="agregardependientes.php" method="post">
                                     <!-- Los campos de dependientes se agregarán aquí mediante JavaScript -->
                                 </form>
@@ -247,12 +248,13 @@
                         </button>                                        
                         <div class="overlay" id="overlay7">
                             <div class="popup">
-                                <span class="close-btn" onclick="cerrarcaja7()">CERRAR</span>
+
                                 <!-- Aquí puedes agregar el contenido de la caja -->  
                                 <h2 class="tm-page-title">Compras</h2><br>                 
                                 <label>Seleccione una fecha:</label><br>
                                 <input class="loginin" type="date" name="FechaCompra" placeholder="FechaCompra" required>
-                                <button class="btn btn-primary tm-btn-submit" type="submit" title="buscar_fecha" name="buscar_fecha">BUSCAR</button>  
+                                <button class="btn2 btn-primary tm-btn-submit close-btn" onclick="cerrarcaja7()">Cerrar</span>                                
+                                <button class="btn2 btn-primary tm-btn-submit" type="submit" title="buscar_fecha" name="buscar_fecha">Buscar</button>  
                                 <!-- Aquí termina el contenido de la caja -->
                             </div>
                         </div>
