@@ -9,15 +9,17 @@
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="fontawesome/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         body {
             font-family: 'Open Sans', sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #FBEED7;
         }
-        .container {
-            width: 50%;
+        .container-custom {
+            max-width: 600px;
             margin: auto;
             padding-top: 50px;
         }
@@ -25,14 +27,13 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        h1, h2 {
+            color: #946D43;
         }
         h1 {
             text-align: center;
-            color: #946D43;
-        }
-        h2 {
-            margin-bottom: 20px;
-            color: #946D43;
         }
         input[type="text"],
         input[type="password"] {
@@ -48,29 +49,36 @@
             padding: 10px;
             border: none;
             background-color: #946D43;
+            color: white;
             border-radius: 5px;
             cursor: pointer;
+        }
+        .btn-submit:hover {
+            background-color: #7b5435;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container container-custom">
         <header>
             <h1>Bienvenido a Liconsa</h1>
         </header>
         <form action="iniciodesesion.php" method="post">
             <h2>Iniciar Sesión</h2>
-            <p>
+            <div class="form-group">
                 <label for="usuario">Correo:</label>
-                <input type="text" id="usuario" placeholder="Ingrese su correo" name="usuario">
-            </p>
-            <p>
+                <input type="text" class="form-control" id="usuario" placeholder="Ingrese su correo" name="usuario">
+            </div>
+            <div class="form-group">
                 <label for="contraseña">Contraseña:</label>
-                <input type="password" id="contraseña" placeholder="Ingrese su contraseña" name="contraseña">
-            </p>
-            <div class="g-recaptcha" data-sitekey="6Le5fgAqAAAAAHvSg_sePzhVc-BwDjWUsIv71M7g"></div>
-            <input class="btn-submit" type="submit" value="Ingresar">
+                <input type="password" class="form-control" id="contraseña" placeholder="Ingrese su contraseña" name="contraseña">
+            </div>
+            <div class="g-recaptcha mb-3" data-sitekey="6Le5fgAqAAAAAHvSg_sePzhVc-BwDjWUsIv71M7g"></div>
+            <button type="submit" class="btn btn-submit">Ingresar</button>
         </form>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
