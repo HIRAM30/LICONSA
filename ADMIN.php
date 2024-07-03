@@ -22,9 +22,7 @@
                 </div>
             </article>
             <article><!--Columna derecha-->   
-
                 <section><!--Seccion 1, 2 cajas en columna-->
-
                     <div class="caja"><!--Caja 1-->                            
                         <button id="btn-caja" title="Agregar" name="Agregar" onclick="mostrarcaja1()">
                             <i class="fas fa-user-plus fa-3x tm-nav-icon"></i>
@@ -48,7 +46,6 @@
                                     <input class="loginin" type="number" id="edad" name="edad" required>
                                     <label for="personas_dependientes"># Dependientes:</label>
                                     <input class="loginin" type="number" id="personas_dependientes" name="personas_dependientes" required>
-                                    
                                     <input class="loginin" type="text" id="direccion" name="direccion" placeholder="Dirección" required>                                   
                                     <input class="loginin" type="tel" id="telefono" name="telefono" placeholder="Teléfono Celular" required>                                    
                                     <input class="loginin" type="email" id="correo_electronico" name="correo_electronico" placeholder="Correo Electrónico" required>
@@ -82,7 +79,6 @@
                             </div>
                         </div>
                     </div>                                                                
-
                     <form action="consultar_eliminar.php" method="post" enctype="multipart/form-data">
                     <div class="caja"><!--Caja 2-->                                                                               
                         <button id="btn-caja" title="Eliminar" name="Eliminar" onclick="mostrarcaja2()">
@@ -91,7 +87,6 @@
                         </button>                                        
                         <div class="overlay" id="overlay2">
                             <div class="popup">
-
                                 <!-- Aquí puedes agregar el contenido de la caja -->
                                 <h2 class="tm-page-title">Eliminar</h2><br>                                
                                 <input class="loginin" type="text" name="CURP" placeholder="CURP" required>
@@ -104,7 +99,6 @@
                     </form>
                 </section><!--Termina seccion 1-->
                 <section><!--Seccion 2, 2 cajas en columna-->
-
                 <form action="consultar_editar.php" method="post" enctype="multipart/form-data"> 
                     <div class="caja"><!--Caja 3-->
                         <button id="btn-caja" title="Editar" name="Editar" onclick="mostrarcaja3()">
@@ -113,7 +107,6 @@
                         </button>                                           
                         <div class="overlay" id="overlay3">
                             <div class="popup">
-
                                 <!-- Aquí puedes agregar el contenido de la caja --> 
                                 <h2 class="tm-page-title">Editar</h2><br>                                
                                 <input class="loginin" type="text" name="CURP" placeholder="CURP" required>
@@ -218,7 +211,6 @@
                                                 ?>
                                             </select><br>
                                         `;
-
                                         // Agregar el botón de guardar
                                         formulario.innerHTML += `
                                             <button class="btn btn-primary tm-btn-submit" type="submit">Guardar</button>

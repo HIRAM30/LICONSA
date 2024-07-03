@@ -3,7 +3,6 @@
     padding: 0%;
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 }
-
 body {
     font-size: 19px;
     font-weight: 300;
@@ -11,19 +10,16 @@ body {
     position: relative;
     background-color: #FBEED7;
 }
-
 section{
     display: flex;
     gap: 10px;
     padding: 20px;
 }
-
 article{
     padding: 20px;
     width: 100%;
     height: auto;
 }
-
 .overlay {
     display: none;
     position: fixed;
@@ -40,7 +36,6 @@ article{
     justify-content: center;
     font-size: medium;
 }
-
 .popup {
     background:#2c2a35;
     padding: 20px;
@@ -49,13 +44,11 @@ article{
     max-width: 80%; /* Definimos el ancho máximo */
     margin: auto;
 }
-
 .close-btn {
     color: rgb(0, 0, 0);
     cursor: pointer;
     padding: .5rem 2.4rem;
 }
-
 #btn-caja{
     color: #946D43;
     width: 168px;
@@ -66,19 +59,15 @@ article{
     background-color: transparent;
     font-size: 19px;
 }
-
-
 .tm-site-header-col {
     align-items: center;
     margin: auto;
 }
-
 #contenido-col-izq {
     margin: 10px;
     text-align: right;
     width: 100%;
 }
-
 .cuadro-caja {
     color: #946D43;
     display: flex;
@@ -91,7 +80,6 @@ article{
     cursor: pointer;
     position: relative;
 }
-
 .tm-main-content {
     display: flex;
     align-items: center;
@@ -103,77 +91,61 @@ article{
     bottom: 0;
     overflow: auto;
 }
-
 .grid__item {
     margin: 10px;
 }
-
 h1 {
     font-size: 2.8rem;
 }
-
 #tm-wrap {
     margin: 10px;
     padding: 20px;
     width: auto;
     height: auto;
 }
-
 p {
     font-size: medium;
     line-height: 1.9;
 }
-
 .fa-3x {
     font-size: 2.5em;
 }
-
 .caja:hover {
     background: #2c2a35;
     color: #a9a9a9;
     transition: all 0.3s ease;
 }
-
 .tm-nav-icon {
     display: block;
     margin-bottom: 25px;
 }
-
 /* Expanding Grid Items from Codrops */
 .tm-page-title {
     font-weight: 300;
     color: #D9C19D;
 }
-
 label{
     color: #a9a9a9;
     font-size:medium;
 }
-
 .content {
     max-width: 370px;
 }
-
 .grid {
     display: flex;
     flex-wrap: wrap;
 }
-
-
 .tm-btn-submit {
     background-color: #946D43;
 }
-
 .tm-btn-gray {
     background-color: #494752;
     color: white;
 }
-
 .tm-btn-gray:hover {
     background-color: #77757d;
     color: white;
 }
-
 .btn {
     padding: .5rem 2.4rem;
     font-size: 1rem;
@@ -192,51 +164,39 @@ label{
     margin-left: .5rem;
     margin-right: .5rem;
 }
-
-
 .btn-primary {
     border-color: transparent;
 }
-
 .btn-primary:hover {
     background-color: #502B0F;
     border-color: transparent;
 }
-
 .tm-copyright-text {
     background-color: rgba(0, 0, 0, 0.6);
     display: inline-block;
     padding: 10px 30px;
     color: white;
 }
-
 a,
 button {
     transition: all 0.3s ease;
 }
-
 a:hover,
 a:focus {
     text-decoration: none;
     outline: none;
 }
-
 p:last-child {
     margin-bottom: 0;
 }
 .loginin {
     font-size:medium;
     color: #000000;
-
     display: block;
     width: 100%;
-
-
     margin-bottom: 10px;
     padding: 2px;
-
     box-sizing: border-box;
-
     border: none;
     border-radius: 3px 3px 3px 3px;
     -moz-border-radius: 3px 3px 3px 3px;
@@ -247,7 +207,6 @@ p:last-child {
     padding: 2px; 
     font-size:medium;
 }
-
 #bcsn {
     background-color: #946D43;
     padding: 10px 20px;

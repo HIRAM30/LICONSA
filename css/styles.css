@@ -11,11 +11,9 @@ body {
   text-align: center;
   justify-items: center;
 }
-
 h2 {
   color: #333;
 }
-
 table {
   width: auto;
   border-collapse: collapse;
@@ -24,28 +22,22 @@ table {
   margin-left: auto;
   margin-right: auto;
 }
-
 th, td {
   padding: 10px;
   border: 1px solid #ddd;
 }
-
 th {
   background-color: #f2f2f2;
 }
-
 tr:nth-child(even) {
   background-color: #f9f9f9;
 }
-
 tr:hover {
   background-color: #ddd;
 }
-
 p {
   color: #555;
 }
-
 button {
   background-color: #946D43;
   padding: 10px 20px;
@@ -57,16 +49,13 @@ button {
   border-radius: 0;
   border-color: transparent;
 }
-
 button a {
   text-decoration: none;
   color: white;
 }
-
 button:hover {
   background-color: #775836;
 }
-
 #botonsubmit{
   background-color: #946D43;
   padding: 10px 20px;
@@ -80,7 +69,6 @@ button:hover {
   text-decoration: none;
   color: white;
 }
-
 #inputeditable{    
   border-color: transparent;
   background-color: transparent;
