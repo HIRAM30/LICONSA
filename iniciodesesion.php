@@ -52,11 +52,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: login.php");
 }
 ?>
-<<<<<<< HEAD
-
-
-
-
-
-=======
->>>>>>> 4809f820fd62e5b66936a3c14c7e09ed89fd1838

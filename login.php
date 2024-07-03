@@ -79,7 +79,7 @@
                 <input type="password" class="form-control" id="contraseña" placeholder="Ingrese su contraseña" name="contraseña">
             </div>
             <div class="g-recaptcha mb-3" data-sitekey="6Le5fgAqAAAAAHvSg_sePzhVc-BwDjWUsIv71M7g"></div>
-            <button type="submit" class="btn btn-submit">Ingresar</button>
+            <button type="submit" class="btn-submit">Ingresar</button>
         </form>
     </div>
 
