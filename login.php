@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300">
     <style>
         body {
-            
             font-family: 'Open Sans', sans-serif;
             margin: 0;
             padding: 0;
@@ -22,13 +21,11 @@
             padding-top: 50px;
         }
         form {
-            
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         h1 {
-          
             text-align: center;
             color: #946D43;
         }
@@ -44,18 +41,15 @@
             border-radius: 5px;
             border: 1px solid #ccc;
             box-sizing: border-box;
-          
         }
         .btn-submit {
             width: 100%;
             padding: 10px;
-           
             border: none;
-           background-color: #946D43;
+            background-color: #946D43;
             border-radius: 5px;
             cursor: pointer;
         }
-       
     </style>
 </head>
 <body>
@@ -63,7 +57,7 @@
         <header>
             <h1>Bienvenido a Liconsa</h1>
         </header>
-        <form action="iniciodesesion.php" method="post">
+        <form id="formInicioSesion" action="iniciodesesion.php" method="post">
             <h2>Iniciar Sesión</h2>
             <p>
                 <label for="usuario">Correo:</label>
@@ -75,7 +69,28 @@
             </p>
             <input class="btn-submit" type="submit" value="Ingresar">
         </form>
-        
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('formInicioSesion').addEventListener('submit', function(event) {
+                event.preventDefault(); // Evitar que el formulario se envíe inmediatamente
+
+                // Obtener los elementos del formulario
+                var usuarioInput = document.getElementById('usuario');
+                var contrasenaInput = document.getElementById('contraseña');
+
+                // Verificar si faltan datos por ingresar
+                if (!usuarioInput.value || !contrasenaInput.value) {
+                    alert("Por favor, complete todos los campos requeridos.");
+                    return;
+                }
+
+                // Enviar el formulario con la contraseña hasheada
+                this.submit();
+            });
+        });
+    </script>
 </body>
 </html>
+

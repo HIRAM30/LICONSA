@@ -5,7 +5,7 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener credenciales del formulario
     $usuario = $_POST['usuario'];
-    $contraseña = $_POST['contraseña']; // Esta ya está hasheada con MD5
+    $contraseña = $_POST['contraseña'];
 
     // Conectar a la base de datos
     $conexion = mysqli_connect("localhost", "root", "", "liconsa");
@@ -60,6 +60,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: login.php");
 }
 ?>
+
+
 
 
 
