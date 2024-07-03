@@ -4,6 +4,8 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usuario = $_POST['usuario'];
     $contraseña = $_POST['contraseña'];
+<<<<<<< HEAD
+=======
     $recaptcha_response = $_POST['g-recaptcha-response'];
 
     // Validar el reCAPTCHA
@@ -15,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: login.php?error=captcha_failed");
         exit;
     }
+>>>>>>> 4809f820fd62e5b66936a3c14c7e09ed89fd1838
 
     // Conectar a la base de datos
     $conexion = mysqli_connect("localhost", "root", "", "liconsa");
@@ -63,3 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: login.php");
 }
 ?>
+<<<<<<< HEAD
+
+
+
+
+
+=======
+>>>>>>> 4809f820fd62e5b66936a3c14c7e09ed89fd1838

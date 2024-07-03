@@ -4,27 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="https://iconape.com/wp-content/files/km/254233/png/254233.png"/>
-        <title>ADMIN</title>
-
-        <link rel="stylesheet" href="fontawesome/css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300">
-        <link rel="stylesheet" href="css/admin.css">
+  <title>ADMIN</title>
+  <link rel="stylesheet" href="fontawesome/css/fontawesome-all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300">
+  <link rel="stylesheet" href="css/admin.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 </head>
 <body>
 <div id="tm-wrap">
-        <section><!--Seccion Display Flex-->
-            <article class="tm-site-header-col"><!--Columna izquierda-->
-                <div id="contenido-col-izq">
-                    <h1 class="">LICONSA</h1><br>
-                    <img src="img/underline.png">
-                    <p>BIENVENIDO ADMINISTRADOR</p>
-                    <a href="LOGIN.php"><button id="bcsn">Cerrar Sesion</button></a>
-                </div>
-            </article>
-            <article><!--Columna derecha-->   
+  <section><!--Seccion Display Flex-->
+    <article class="tm-site-header-col"><!--Columna izquierda-->
+      <div id="contenido-col-izq">
+        <h1 class="">LICONSA</h1><br>
+        <img src="img/underline.png">
+        <p>BIENVENIDO ADMINISTRADOR</p>
+        <a href="LOGIN.php"><button id="bcsn">Cerrar Sesion</button></a>
+      </div>
+    </article>
+    <article><!--Columna derecha-->   
 
-                <section><!--Seccion 1, 2 cajas en columna-->
+      <section><!--Seccion 1, 2 cajas en columna-->
+        <div class="caja"><!--Caja 1-->                            
+          <button id="btn-caja" title="Agregar" name="Agregar" onclick="mostrarcaja1()">
+            <i class="fas fa-user-plus fa-3x tm-nav-icon"></i>
+            Agregar Usuario
+          </button>   
+          <div class="overlay" id="overlay1">
+            <div class="popup">
+              <span class="close-btn" onclick="cerrarcaja1()">CERRAR</span>
+              <?php if (!empty($mensaje)) : ?>
+                <p><?php echo $mensaje; ?></p>
+              <?php endif; ?>
+              <form id="formAgregarBeneficiario" action="agregar_beneficiario.php" method="post" enctype="multipart/form-data">                                  
+                <h2 class="tm-page-title">Agregar</h2><br> 
+                <input type="number" id="id" name="id"  placeholder="ID (No modificable)" hidden>
+                <label for="foto">Foto:</label>
+                <input class="selector" type="file" id="foto" name="foto" accept="image/*"><br>                                    
+                <input class="loginin" type="text" id="nombre" name="nombre" placeholder="Nombre(s)" required>                                 
+                <input class="loginin" type="text" id="apellidos" name="apellidos" placeholder="Apellido(s)" required>                                   
+                <input class="loginin" type="text" id="curp" name="curp" placeholder="CURP" required>
+                <label for="edad">Edad:</label>
+                <input class="loginin" type="number" id="edad" name="edad" required>
+                <label for="personas_dependientes"># Dependientes:</label>
+                <input class="loginin" type="number" id="personas_dependientes" name="personas_dependientes" required>
+                <input class="loginin" type="text" id="direccion" name="direccion" placeholder="Dirección" required>                                   
+                <input class="loginin" type="tel" id="telefono" name="telefono" placeholder="Teléfono Celular" required>                                    
+                <input class="loginin" type="email" id="correo_electronico" name="correo_electronico" placeholder="Correo Electrónico" required>
+                <input class="loginin" type="password" id="contrasena" name="contrasena" placeholder="Contraseña" required>
+                <label for="tipo_usuario">Tipo de usuario:</label>                                  
+                <select class="selector" name="tipo_usuario" id="tipo_usuario" required>
+                  <?php
+                  // Conexión a la base de datos
+                  $db = new PDO('mysql:host=localhost;dbname=liconsa', 'root', '');
 
+<<<<<<< HEAD
                     <div class="caja"><!--Caja 1-->                            
                         <button id="btn-caja" title="Agregar" name="Agregar" onclick="mostrarcaja1()">
                             <i class="fas fa-user-plus fa-3x tm-nav-icon"></i>
@@ -58,16 +91,181 @@
                                     <?php
                                     // Conexión a la base de datos
                                     $db = new PDO('mysql:host=localhost;dbname=liconsa', 'root', '');
+=======
+                  // Consulta para obtener los tipos de usuario
+                  $sql = "SELECT * FROM tipousuario";
+>>>>>>> ca3be69471c1f8f830502e1cf60f7ba872b7e908
 
-                                    // Consulta para obtener los tipos de usuario
-                                    $sql = "SELECT * FROM tipousuario";
+                  // Preparación de la consulta
+                  $stmt = $db->prepare($sql);
 
-                                    // Preparación de la consulta
-                                    $stmt = $db->prepare($sql);
+                  // Ejecución de la consulta
+                  $stmt->execute();
 
-                                    // Ejecución de la consulta
-                                    $stmt->execute();
+                  // Recorrido de los tipos de usuario
+                  while ($tipo_usuario = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<option value=\"{$tipo_usuario['id']}\">{$tipo_usuario['TipoUsuario']}</option>";
+                  }
+                  ?>
+                </select><br>                                  
+                <button class="btn btn-primary tm-btn-submit" type="submit">Agregar</button>
+              </form>                                                                                                                                   
+            </div>
+          </div>
+        </div>                                                                
+        <form action="consultar_eliminar.php" method="post" enctype="multipart/form-data">
+          <div class="caja"><!--Caja 2-->                                                                               
+            <button id="btn-caja" title="Eliminar" name="Eliminar" onclick="mostrarcaja2()">
+              <i class="fas fa-trash fa-3x tm-nav-icon"></i>
+              Eliminar Usuario
+            </button>                                        
+            <div class="overlay" id="overlay2">
+              <div class="popup">
+                <span class="close-btn" onclick="cerrarcaja2()">CERRAR</span>
+                <h2 class="tm-page-title">Eliminar</h2><br>                                
+                <input class="loginin" type="text" name="CURP" placeholder="CURP" required>
+                <button class="btn btn-primary tm-btn-submit" type="submit" title="Buscar" name="Buscar">Buscar</button>                                
+              </div>
+            </div>
+          </div>
+        </form>
+      </section><!--Termina seccion 1-->
+      <section><!--Seccion 2, 2 cajas en columna-->
+        <form action="consultar_editar.php" method="post" enctype="multipart/form-data"> 
+          <div class="caja"><!--Caja 3-->
+            <button id="btn-caja" title="Editar" name="Editar" onclick="mostrarcaja3()">
+              <i class="fas fa-edit fa-3x tm-nav-icon"></i>
+              Editar Usuario
+            </button>                                           
+            <div class="overlay" id="overlay3">
+              <div class="popup">
+                <span class="close-btn" onclick="cerrarcaja3()">CERRAR</span>
+                <h2 class="tm-page-title">Editar</h2><br>                                
+                <input class="loginin" type="text" name="CURP" placeholder="CURP" required>
+                <button class="btn btn-primary tm-btn-submit" type="submit" title="Buscar" name="Buscar">Buscar</button>
+              </div>
+            </div>
+          </div>                                                                    
+        </form>
+        <form action="Compra.php" method="post" enctype="multipart/form-data">
+          <div class="caja"><!--Caja 4-->
+            <button id="btn-caja" title="Validar" name="Validar" onclick="mostrarcaja4()">
+              <i class="fas fa-calendar-check fa-3x tm-nav-icon"></i>
+              Validar Compra
+            </button>                                                               
+          </div>
+        </form>
+      </section><!--Termina seccion 2-->
+      <section><!--Seccion 3, 2 cajas en columna-->
+        <form action="consultar.php" method="post" enctype="multipart/form-data">  
+          <div class="caja"><!--Caja 5-->
+            <button id="btn-caja" title="Consultar" name="Consultar" onclick="mostrarcaja5()">
+              <i class="fas fa-search fa-3x tm-nav-icon"></i>
+              Consultar Usuario
+            </button>                                        
+            <div class="overlay" id="overlay5">
+              <div class="popup">
+                <span class="close-btn" onclick="cerrarcaja5()">CERRAR</span>
+                <h2 class="tm-page-title">Consultar</h2><br>
+                <input class="loginin" type="text" name="CURP" placeholder="CURP" required>
+                <button class="btn btn-primary tm-btn-submit" type="submit" title="Buscar" name="Buscar">Buscar</button>
+                <div id="resultadoConsulta"></div>
+              </div>
+            </div>
+          </div>
+        </form>      
+        <div class="caja"><!--Caja 6-->
+          <button id="btn-caja" title="Validar" name="Validar" onclick="mostrarcaja6()">
+            <i class="fas fa-user-circle fa-3x tm-nav-icon"></i>
+            Agregar Dependientes
+          </button>                                        
+          <div class="overlay" id="overlay6">
+            <div class="popup">
+              <span class="close-btn" onclick="cerrarcaja6()">CERRAR</span>
+              <h2 class="tm-page-title">Agregar</h2><br>  
+              <script>
+                // Esta función se ejecuta cuando el usuario cambia el número de dependientes
+                function mostrarCamposDependientes() {
+                  var numDependientes = document.getElementById("num_dependientes").value;
+                  var formulario = document.getElementById("formulario_dependientes");
+                  formulario.innerHTML = "";
+                  for (var i = 1; i <= numDependientes; i++) {
+                    formulario.innerHTML += `
+                      <div>
+                        <label for="curp_dependiente_${i}">CURP del dependiente ${i}:</label>
+                        <input type="text" id="curp_dependiente_${i}" name="curp_dependiente_${i}" required>
+                      </div>
+                      <div>
+                        <label for="nombre_dependiente_${i}">Nombre del dependiente ${i}:</label>
+                        <input type="text" id="nombre_dependiente_${i}" name="nombre_dependiente_${i}" required>
+                      </div>
+                      <br>
+                    `;
+                  }
+                  formulario.innerHTML += `
+                    <label for="idBeneficiario">ID del Beneficiario:</label>
+                    <select class="selector" name="idBeneficiario" id="idBeneficiario" required>
+                      <?php
+                      $db = new PDO('mysql:host=localhost;dbname=liconsa', 'root', '');
+                      $sql = "SELECT id FROM beneficiario ORDER BY id DESC";
+                      $stmt = $db->prepare($sql);
+                      $stmt->execute();
+                      while ($tipo_usuario = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<option value=\"{$tipo_usuario['id']}\">{$tipo_usuario['id']}</option>";
+                      }
+                      ?>
+                    </select><br>
+                  `;
+                  formulario.innerHTML += `
+                    <button class="btn btn-primary tm-btn-submit" type="submit">Guardar</button>
+                  `;
+                }
+              </script>
+              <label for="num_dependientes">Número de Dependientes:</label>
+              <input type="number" id="num_dependientes" name="num_dependientes" min="1" onchange="mostrarCamposDependientes()" required>
+              <br><br>
+              <form id="formulario_dependientes" action="agregardependientes.php" method="post">
+              </form>
+            </div>
+          </div>
+        </div>
+      </section><!--Termina seccion 3-->
+      <section><!--Seccion 4, 1 caja en columna-->
+        <div class="caja"><!--Caja 7-->
+          <form action="resulfecha.php" method="post" enctype="multipart/form-data">                                                                            
+            <button id="btn-caja" title="Eliminar" name="Eliminar" onclick="mostrarcaja7()">
+              <i class="fas fa-server fa-3x tm-nav-icon"></i>
+              Registro de Compra
+            </button>                                        
+            <div class="overlay" id="overlay7">
+              <div class="popup">
+                <span class="close-btn" onclick="cerrarcaja7()">CERRAR</span>
+                <h2 class="tm-page-title">Compras</h2><br>                 
+                <label>Seleccione una fecha:</label><br>
+                <input class="loginin" type="date" name="FechaCompra" placeholder="FechaCompra" required>
+                <button class="btn btn-primary tm-btn-submit" type="submit" title="buscar_fecha" name="buscar_fecha">BUSCAR</button>  
+              </div>
+            </div>
+          </form> 
+        </div>
+      </section>                
+    </article>
+  </section>
+</div>
+<script src="js/main.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('formAgregarBeneficiario').addEventListener('submit', function(event) {
+      event.preventDefault(); // Evitar que el formulario se envíe inmediatamente
+      var contrasenaInput = document.getElementById('contrasena');
+      var contrasenaHasheada = CryptoJS.MD5(contrasenaInput.value).toString();
+      console.log("Contraseña hasheada:", contrasenaHasheada); // Verificar el valor hasheado
+      contrasenaInput.value = contrasenaHasheada;
+      this.submit(); // Enviar el formulario con la contraseña hasheada
+    });
+  });
 
+<<<<<<< HEAD
                                     // Recorrido de los tipos de usuario
                                     while ($tipo_usuario = $stmt->fetch(PDO::FETCH_ASSOC)) {
                                       echo "<option value=\"{$tipo_usuario['id']}\">{$tipo_usuario['TipoUsuario']}</option>";
@@ -279,5 +477,50 @@
 		document.getElementById('overlay8').style.display = 'none';
 	}
   </script>
+=======
+  function mostrarcaja1() {
+    document.getElementById('overlay1').style.display = 'flex';
+  }
+  function cerrarcaja1() {
+    document.getElementById('overlay1').style.display = 'none';
+  }
+  function mostrarcaja2() {
+    document.getElementById('overlay2').style.display = 'flex';
+  }
+  function cerrarcaja2() {
+    document.getElementById('overlay2').style.display = 'none';
+  }
+  function mostrarcaja3() {
+    document.getElementById('overlay3').style.display = 'flex';
+  }
+  function cerrarcaja3() {
+    document.getElementById('overlay3').style.display = 'none';
+  }
+  function mostrarcaja4() {
+    document.getElementById('overlay4').style.display = 'flex';
+  }
+  function cerrarcaja4() {
+    document.getElementById('overlay4').style.display = 'none';
+  }
+  function mostrarcaja5() {
+    document.getElementById('overlay5').style.display = 'flex';
+  }
+  function cerrarcaja5() {
+    document.getElementById('overlay5').style.display = 'none';
+  }
+  function mostrarcaja6() {
+    document.getElementById('overlay6').style.display = 'flex';
+  }
+  function cerrarcaja6() {
+    document.getElementById('overlay6').style.display = 'none';
+  }
+  function mostrarcaja7() {
+    document.getElementById('overlay7').style.display = 'flex';
+  }
+  function cerrarcaja7() {
+    document.getElementById('overlay7').style.display = 'none';
+  }
+</script>
+>>>>>>> ca3be69471c1f8f830502e1cf60f7ba872b7e908
 </body>
 </html>

@@ -49,6 +49,11 @@
             padding: 10px;
             border: none;
             background-color: #946D43;
+<<<<<<< HEAD
+            border-radius: 5px;
+            cursor: pointer;
+        }
+=======
             color: white;
             border-radius: 5px;
             cursor: pointer;
@@ -56,6 +61,7 @@
         .btn-submit:hover {
             background-color: #7b5435;
         }
+>>>>>>> 4809f820fd62e5b66936a3c14c7e09ed89fd1838
     </style>
 </head>
 <body>
@@ -63,7 +69,7 @@
         <header>
             <h1>Bienvenido a Liconsa</h1>
         </header>
-        <form action="iniciodesesion.php" method="post">
+        <form id="formInicioSesion" action="iniciodesesion.php" method="post">
             <h2>Iniciar Sesión</h2>
             <div class="form-group">
                 <label for="usuario">Correo:</label>
@@ -77,8 +83,35 @@
             <button type="submit" class="btn btn-submit">Ingresar</button>
         </form>
     </div>
+<<<<<<< HEAD
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('formInicioSesion').addEventListener('submit', function(event) {
+                event.preventDefault(); // Evitar que el formulario se envíe inmediatamente
+
+                // Obtener los elementos del formulario
+                var usuarioInput = document.getElementById('usuario');
+                var contrasenaInput = document.getElementById('contraseña');
+
+                // Verificar si faltan datos por ingresar
+                if (!usuarioInput.value || !contrasenaInput.value) {
+                    alert("Por favor, complete todos los campos requeridos.");
+                    return;
+                }
+
+                // Enviar el formulario con la contraseña hasheada
+                this.submit();
+            });
+        });
+    </script>
+</body>
+</html>
+
+=======
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+>>>>>>> 4809f820fd62e5b66936a3c14c7e09ed89fd1838
