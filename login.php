@@ -49,11 +49,10 @@
             padding: 10px;
             border: none;
             background-color: #946D43;
-<<<<<<< HEAD
+
             border-radius: 5px;
             cursor: pointer;
         }
-=======
             color: white;
             border-radius: 5px;
             cursor: pointer;
@@ -61,7 +60,7 @@
         .btn-submit:hover {
             background-color: #7b5435;
         }
->>>>>>> 4809f820fd62e5b66936a3c14c7e09ed89fd1838
+
     </style>
 </head>
 <body>
@@ -83,7 +82,7 @@
             <button type="submit" class="btn btn-submit">Ingresar</button>
         </form>
     </div>
-<<<<<<< HEAD
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -108,10 +107,8 @@
 </body>
 </html>
 
-=======
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
->>>>>>> 4809f820fd62e5b66936a3c14c7e09ed89fd1838
