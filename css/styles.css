@@ -1,89 +1,89 @@
 *{
-    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
 }
 body {
-    background-color: #FBEED7;
-    color: #946D43;
-    font-size: 15px;
-    font-weight: 300;
-    margin: 0;
-    padding: 20px;
-    text-align: center;
-    justify-items: center;
-  }
+  background-color: #FBEED7;
+  color: #946D43;
+  font-size: 15px;
+  font-weight: 300;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  justify-items: center;
+}
 
-  h2 {
-    color: #333;
-  }
+h2 {
+  color: #333;
+}
 
-  table {
-    width: auto;
-    border-collapse: collapse;
-    margin-top: 20px;
-    text-align: left;
-    margin-left: auto;
-    margin-right: auto;
-  }
+table {
+  width: auto;
+  border-collapse: collapse;
+  margin-top: 20px;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-  }
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
 
-  th {
-    background-color: #f2f2f2;
-  }
+th {
+  background-color: #f2f2f2;
+}
 
-  tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
 
-  tr:hover {
-    background-color: #ddd;
-  }
+tr:hover {
+  background-color: #ddd;
+}
 
-  p {
-    color: #555;
-  }
+p {
+  color: #555;
+}
 
-  button {
-    background-color: #946D43;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-    padding: .5rem 2.4rem;
-    font-size: 1.2rem;
-    border-radius: 0;
-    border-color: transparent;
-  }
+button {
+  background-color: #946D43;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  padding: .5rem 2.4rem;
+  font-size: 1.2rem;
+  border-radius: 0;
+  border-color: transparent;
+}
 
-  button a {
-    text-decoration: none;
-    color: white;
-  }
+button a {
+  text-decoration: none;
+  color: white;
+}
 
-  button:hover {
-    background-color: #775836;
-  }
+button:hover {
+  background-color: #775836;
+}
 
-  #botonsubmit{
-    background-color: #946D43;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-    padding: .5rem 2.4rem;
-    font-size: 1.2rem;
-    border-radius: 0;
-    border-color: transparent;
-    text-decoration: none;
-    color: white;
-  }
+#botonsubmit{
+  background-color: #946D43;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  padding: .5rem 2.4rem;
+  font-size: 1.2rem;
+  border-radius: 0;
+  border-color: transparent;
+  text-decoration: none;
+  color: white;
+}
 
-  #inputeditable{    
-    border-color: transparent;
-    background-color: transparent;
-    color: #755736;
-    font-size: 15px;   
-  }
+#inputeditable{    
+  border-color: transparent;
+  background-color: transparent;
+  color: #755736;
+  font-size: 15px;   
+}
